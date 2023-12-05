@@ -56,7 +56,7 @@ class OrderInvoiceAPIView(APIView):
 
         # Generate and send email with order details as an invoice
         subject = f"Order Invoice #{order.id}"
-        message = render_to_string('templates/order/order_email.html', {'order': order})
+        message = render_to_string('../templates/email/order_email.html', {'order': order})
         recipient_email = order.user.email  # Assuming User model has an 'email' field
 
         from_email = os.getenv('EMAIL')
