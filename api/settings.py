@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'service.apps.ServiceConfig',
     'user.apps.UserConfig',
+    'order.apps.OrderConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
