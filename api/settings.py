@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'service.apps.ServiceConfig',
     'user.apps.UserConfig',
     'order.apps.OrderConfig',
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,25 +86,16 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-USE_PSQL = os.getenv('USE_PSQL', False)
-if USE_PSQL:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('PSQL_DB'),
-            'USER': os.getenv('PSQL_USER'),
-            'PASSWORD': os.getenv('PSQL_PASS'),
-            'HOST': os.getenv('PSQL_HOST'),
-            'PORT': os.getenv('PSQL_PORT'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('PSQL_DB'),
+        'USER': os.getenv('PSQL_USER'),
+        'PASSWORD': os.getenv('PSQL_PASS'),
+        'HOST': os.getenv('PSQL_HOST'),
+        'PORT': os.getenv('PSQL_PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 
 # Password validation
